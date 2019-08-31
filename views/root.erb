@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <h1>Public Directory</h1>
+      <div>
+        <%
+        arr = Dir.glob("public/*")
+        arr.reverse! if @reverse
+        arr.each do |file|
+          unless Dir.exist?(file)
+          file = file.sub('public/', '')
+        %>
+        <p><a href = "/<%=file%>"><%=file%></a></p>
+        <%
+          end
+        end%>
+        <%if @reverse%>
+          <p><a href = "/">Sort Ascending</a></p>
+        <%else%>
+          <p><a href = "/reverse">Sort Descending</a></p>
+        <%end%>
+      </div>
+  </body>
+</html>
+
